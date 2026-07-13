@@ -9,11 +9,11 @@
             public CarTypes CarType { get; private set; }
             public readonly int serNum;
 
-            protected Vehicle(double parkingSpace, string plateNum, CarTypes carType, int serNum)
+            protected Vehicle(double parkingSpace, string plateNum,int serNum)
             {
                 ParkingSpace = parkingSpace;
                 PlateNum = plateNum;
-                CarType = carType;
+                CarType = CarTypes.Null;
                 this.serNum = serNum;
             }
         }

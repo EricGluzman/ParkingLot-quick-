@@ -6,7 +6,8 @@
         {
             Car,
             Moto,
-            Truck
+            Truck,
+            Null
         }
     }
 }

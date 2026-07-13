@@ -5,7 +5,7 @@
         public class Truck : Vehicle
         {
             public bool WithTrailer { get; private set; }
-            public Truck(double parkingSpace, string plateNum, CarTypes carType, int serNum) : base(parkingSpace, plateNum, carType, serNum)
+            public Truck(double parkingSpace, string plateNum,int serNum) : base(parkingSpace, plateNum,serNum)
             {
                 this.WithTrailer = false;
             }

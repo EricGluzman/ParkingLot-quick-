@@ -4,7 +4,7 @@
     {
         public class Car : Vehicle
         {
-            public Car(string plateNum, CarTypes carType, int serNum) : base(1, plateNum, carType, serNum)
+            public Car(string plateNum,int serNum) : base(1, plateNum,serNum)
             {
             }
         }

@@ -1,4 +1,6 @@
-﻿namespace ParkingLot_quick_
+﻿using static ParkingLot_quick_.Program;
+
+namespace ParkingLot_quick_
 {
     internal partial class Program
     {
@@ -7,26 +9,42 @@
             public double FreeSpace { get; private set; }
             private readonly double MaxSpace;
             private List<ParkingTicket> ParkedCars;
-            private double CostRate;
+            public double CostRate { get; private set; }
+            public readonly int ParkingSirNum;
+            private static int CountParkings = 0;
 
-            public ParkingLot(double freeSpace, List<ParkingTicket> parkedcars, double costRate,double maxspace)
+            public ParkingLot(List<ParkingTicket> parkedcars, double costRate,double maxspace)
             {
                 ParkedCars = new List<ParkingTicket>();
-                FreeSpace = freeSpace;
+                FreeSpace = maxspace;
                 ParkedCars = parkedcars;
                 CostRate = costRate;
                 MaxSpace = maxspace;
+                this.ParkingSirNum = CountParkings + 100;
+                CountParkings++;
             }
-            public void ChangeFreeSpace(double space)
+            public ParkingLot(double costRate, double maxspace)
+            {
+                ParkedCars = new List<ParkingTicket>();
+                FreeSpace = maxspace;
+                CostRate = costRate;
+                MaxSpace = maxspace;
+                this.ParkingSirNum = CountParkings + 100;
+                CountParkings++;
+            }
+            private void ChangeFreeSpace(double space)
             {
                 if (this.FreeSpace < space) throw new ParkingSpaceException("You cannot take up more space than is available.");
-                if (this.FreeSpace + space > 10) throw new ParkingSpaceException("You tring to add more space than possible, check the space value.");
+                if (this.FreeSpace + space > this.MaxSpace) throw new ParkingSpaceException("You tring to add more space than possible, check the space value.");
                 this.FreeSpace += space;
             }
-            public void AddVehicleToPaking(Vehicle vehicle)
+            public void AddVehicleToParking(Vehicle vehicle) 
             {
                 if (vehicle == null) throw new ArgumentNullException();
-                this.ParkedCars.Add(new ParkingTicket(vehicle, 0, 0));
+                if (this.FreeSpace < vehicle.ParkingSpace) throw new SpaceException();
+                this.ParkedCars.Add(new ParkingTicket(vehicle, 0));
+                ChangeFreeSpace(-vehicle.ParkingSpace);
+
             }
             public void RemoveParkedVehicle(Vehicle vehicle)
             {
@@ -43,13 +61,27 @@
                 this.CostRate = rate;
                 if (this.CostRate <= 0) this.CostRate = 1;
             }
-            private string PrintCarsInfo() // print carr name and its sernum + the amount of time it staid 
+            private string PrintCarsInfo() 
             {
-
+                string Carsinf = "";
+                for (int i = 0; i < ParkedCars.Count; i++) {
+                    ParkingTicket currentcar = ParkedCars[i];
+                    Carsinf += ($"Cars Serial Number: {currentcar.Car.serNum}, Car Time In The Parking Lot: {currentcar.Minutes}, To Pay: {currentcar.PriceToPay}. \n");
+                }
+                return Carsinf;
             }
-            public override string ToString() // print free space + use Printcarsinfo to print the cars info
+            public override string ToString() 
             {
-                return 
+                return $"Free Parking Lot Spaces: {this.FreeSpace}.\n" + PrintCarsInfo();
+            }
+            public ParkingTicket ReturnVehicleAt(int i)
+            {
+                if (i < 0) throw new ArgumentException("Cant Give Negative Index");
+                return this.ParkedCars[i];
+            }
+            public int ParkedVehiclesCount()
+            {
+                return this.ParkedCars.Count;
             }
         }
     }
