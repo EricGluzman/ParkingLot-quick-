@@ -26,8 +26,11 @@
             {
                 for(int i = 0; i < this.Parkings.Count; i++)
                 {
-                    if (this.Parkings[i].ParkingSirNum == parkingLot.ParkingSirNum) this.Parkings.RemoveAt(i);
-                    return;
+                    if (this.Parkings[i].ParkingSirNum == parkingLot.ParkingSirNum)
+                    {
+                        this.Parkings.RemoveAt(i);
+                        return;
+                    }
                 }
                 throw new ParkingLotException();
             }

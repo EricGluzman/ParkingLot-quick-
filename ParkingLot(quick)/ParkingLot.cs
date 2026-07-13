@@ -51,8 +51,11 @@ namespace ParkingLot_quick_
                 if (vehicle == null) throw new NullVehicleException();
                 for(int i = 0; i < this.ParkedCars.Count; i++)
                 {
-                    if (this.ParkedCars[i].Car.serNum == vehicle.serNum) this.ParkedCars.RemoveAt(i);
-                    return;
+                    if (this.ParkedCars[i].Car.serNum == vehicle.serNum)
+                    {
+                        this.ParkedCars.RemoveAt(i);
+                        return;
+                    }
                 }
                 throw new NullVehicleException("The Vehicle Is Not Found.");
             }
