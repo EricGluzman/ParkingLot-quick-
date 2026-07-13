@@ -4,7 +4,7 @@
     {
         public abstract class Vehicle
         {
-            public double ParkingSpace { get; private set; }
+            public readonly double ParkingSpace;
             public string PlateNum { get; private set; }
             public CarTypes CarType { get; private set; }
             public readonly int serNum;
