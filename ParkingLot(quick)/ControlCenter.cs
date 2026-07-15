@@ -38,7 +38,7 @@
             {
                 for(int i = 0; i < this.Parkings.Count; i++)
                 {
-                    for(int j = 0; j < this.Parkings[i].ParkedVehiclesCount(); j++)
+                    for(int j = 0; j < this.Parkings[i].ParkedVehiclesCount(); j++) // move it to the Parking Lot 
                     {
                         var currentvehicle = this.Parkings[i].ReturnVehicleAt(j);
                         currentvehicle.AddMinutes(1);

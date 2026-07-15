@@ -7,8 +7,8 @@ namespace ParkingLot_quick_
         public class ParkingTicket
         {
             public Vehicle Car { get; private set; }
-            public double PriceToPay { get; set; }
-            public int Minutes { get; set; }
+            public double PriceToPay { get; private set; }
+            public int Minutes { get; private set; }
 
             public ParkingTicket(Vehicle car, double priceToPay)
             {

@@ -40,7 +40,7 @@ namespace ParkingLot_quick_
             }
             public void AddVehicleToParking(Vehicle vehicle) 
             {
-                if (vehicle == null) throw new ArgumentNullException();
+                if (vehicle == null) throw new NullVehicleException();
                 if (this.FreeSpace < vehicle.ParkingSpace) throw new SpaceException();
                 this.ParkedCars.Add(new ParkingTicket(vehicle, 0));
                 ChangeFreeSpace(-vehicle.ParkingSpace);
