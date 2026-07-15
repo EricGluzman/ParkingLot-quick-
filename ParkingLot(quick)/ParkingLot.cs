@@ -53,6 +53,7 @@ namespace ParkingLot_quick_
                 {
                     if (this.ParkedCars[i].Car.serNum == vehicle.serNum)
                     {
+                        ChangeFreeSpace(vehicle.ParkingSpace);
                         this.ParkedCars.RemoveAt(i);
                         return;
                     }

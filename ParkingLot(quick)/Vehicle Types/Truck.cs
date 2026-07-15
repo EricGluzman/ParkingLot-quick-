@@ -4,16 +4,9 @@
     {
         public class Truck : Vehicle
         {
-            public bool WithTrailer { get; private set; }
-            public Truck(double parkingSpace, string plateNum,int serNum) : base(parkingSpace, plateNum,serNum)
+            public Truck(string plateNum,int serNum) : base(2, plateNum,serNum)
             {
-                this.WithTrailer = false;
             }
-            public void ChangeTrailerStatus(bool trailer)
-            {
-                this.WithTrailer = trailer;
-            }
-
         }
     }
 }
