@@ -41,8 +41,8 @@
                     for(int j = 0; j < this.Parkings[i].ParkedVehiclesCount(); j++)
                     {
                         var currentvehicle = this.Parkings[i].ReturnVehicleAt(j);
-                        currentvehicle.Minutes++;
-                        currentvehicle.PriceToPay += 0.5 * this.Parkings[i].CostRate;
+                        currentvehicle.AddMinutes(1);
+                        currentvehicle.AddPriceToPay(0.5 * this.Parkings[i].CostRate);
                     }
 
                 }
